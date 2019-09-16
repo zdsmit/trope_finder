@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+def trope_finder
+  puts "Here is a detailed list of plot-related tropes. Pick one by number to learn more!"
+  
+end
+
+trope_finder

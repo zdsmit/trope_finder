@@ -14,4 +14,5 @@ end
 Scraper.new.trope_list
 
 #plot index url: https://tvtropes.org/pmwiki/pmwiki.php/Main/Plots
-#note 9/16: not sure if nokogiri is functioning right. experiment with different urls to make sure class is scraping data correctly. also consult past lessons to make sure syntax is ok for nokogiri call
+#note 9/17: still attempting to find the right css selector for scraping. the closest i've gotten is as follows:       trope_index.css("div.article-content.retro-folders ul")[1]
+# continue experimenting to find the best selector

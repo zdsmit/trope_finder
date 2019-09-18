@@ -8,6 +8,9 @@ class Scraper
     trope_html = Nokogiri::HTML(open("https://tvtropes.org/pmwiki/pmwiki.php/Main/Plots"))
     trope_index = trope_html.css("div.article-content.retro-folders ul")[1].children
     trope_index.each do |trope|
+      #text = trope.text
+      #divide = text.split(":")
+      #trope_name = divide[0]
     end
   end
   

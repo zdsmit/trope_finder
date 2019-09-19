@@ -1,6 +1,7 @@
 require 'pry'
 require 'open-uri'
 require 'nokogiri'
+require_relative './trope.rb'
 
 class Scraper
   
@@ -19,14 +20,14 @@ class Scraper
   
   def trope_page(trope_url)
     page_html = Nokogiri::HTML(open(trope_url))
+    trope = Trope.new
+    trope.name = page_html.css("h1.entry-title").text.gsub("/n", "")
+    
+    binding.pry
   end
   
 end
 
-Scraper.new.trope_list
+Scraper.new.trope_page("https://tvtropes.org/pmwiki/pmwiki.php/Main/FifteenMinutesOfFame")
 
-#plot index url: https://tvtropes.org/pmwiki/pmwiki.php/Main/Plots
-#note 9/17:
-#full trope index: trope_html.css("div.article-content.retro-folders ul")[1].children
-#trope names: trope_html.css("div.article-content.retro-folders ul")[1].children.first.children[1].text
-#trope page urls: trope_html.css("div.article-content.retro-folders ul")[1].children.first.children[1].attr("href
+#trope name: page_html.css("h1.entry-title").text.gsub("/n", "")

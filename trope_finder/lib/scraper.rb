@@ -17,6 +17,10 @@ class Scraper
     end
   end
   
+  def trope_page(trope_url)
+    page_html = Nokogiri::HTML(open(trope_url))
+  end
+  
 end
 
 Scraper.new.trope_list

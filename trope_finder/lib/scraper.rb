@@ -28,8 +28,6 @@ class Scraper
   
 end
 
-Scraper.new.trope_page("https://tvtropes.org/pmwiki/pmwiki.php/Main/FifteenMinutesOfFame")
-
 #trope name: page_html.css("h1.entry-title").text.gsub("/n", "")
 #trope page quote: page_html.css("div.indent")[0].text
 #trope description: page_html.css("div.article-content.retro-folders p").text

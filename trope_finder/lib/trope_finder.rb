@@ -15,10 +15,13 @@ class TropeFinder
     answer = answer.to_s
     if answer == "y"
       @index.trope_list(@url)
+      puts "Enter a number to learn more about that trope."
       input = gets.strip
-      @index.trope_list(@url).detect do |trope_entry|
-        if trope_entry.include?(input)
-          puts trope_entry
+      @index.trope_list(@url).detect do |trope|
+        split_entry = trope.to_s.split(".")
+        number = split_entry[0]
+        if number == input
+          puts trope
         end
       end
     elsif answer == "n"

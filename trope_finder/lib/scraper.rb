@@ -22,8 +22,8 @@ class Scraper
     page_html = Nokogiri::HTML(open(trope_url))
     trope = Trope.new
     trope.name = page_html.css("h1.entry-title").text.gsub("/n", "")
-    
-    binding.pry
+    trope.quote = page_html.css("div.indent")[0].text
+    puts trope.quote
   end
   
 end
@@ -31,3 +31,4 @@ end
 Scraper.new.trope_page("https://tvtropes.org/pmwiki/pmwiki.php/Main/FifteenMinutesOfFame")
 
 #trope name: page_html.css("h1.entry-title").text.gsub("/n", "")
+#trope page quote: page_html.css("div.indent")[0].text

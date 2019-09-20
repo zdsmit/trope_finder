@@ -5,8 +5,8 @@ require_relative './trope.rb'
 
 class Scraper
   
-  def trope_list
-    trope_html = Nokogiri::HTML(open("https://tvtropes.org/pmwiki/pmwiki.php/Main/Plots"))
+  def trope_list(url)
+    trope_html = Nokogiri::HTML(open(url))
     trope_index = trope_html.css("div.article-content.retro-folders ul")[1].children
     trope_index.each do |trope|
       url = trope.css('a')

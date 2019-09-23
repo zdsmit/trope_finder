@@ -16,8 +16,10 @@ class TropeFinder
     if answer == "y"
       @index.trope_list(@url)
       puts "Enter a number to learn more about that trope."
-      input = gets.strip
-      puts @index.trope_list(@url)[input.to_i - 1].children
+      input = STDIN.gets.strip
+      trope_info = @index.trope_list(@url)[input.to_i - 1].children.map {|info| info["href"]}
+      page_address = "tvtropes.org" + (trope_info[1].to_s)
+      @index.trope_page(page_address)
     elsif answer == "n"
       puts "Thank you for using the Trope Finder. Please have a great day."
     end
@@ -25,6 +27,6 @@ class TropeFinder
   
   TropeFinder.new.user_interface
   
-  # note 9/20: the user_interface isn't working yet. it needs to identify the number of the trope from the list and return that entry based on user input. also, may want to consider changing welcome message setup due to large size of trope list
+  # note 9/23: almost working, but before it can complete its functionality it returns the error "No such file or directory @ rb_sysopen - tvtropes.org/pmwiki/pmwiki.php/Main/ZanySchemeChicken (Errno::ENOENT)"
   
 end

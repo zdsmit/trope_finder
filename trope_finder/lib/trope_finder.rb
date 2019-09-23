@@ -17,13 +17,7 @@ class TropeFinder
       @index.trope_list(@url)
       puts "Enter a number to learn more about that trope."
       input = gets.strip
-      @index.trope_list(@url).detect do |trope|
-        split_entry = trope.to_s.split(".")
-        number = split_entry[0]
-        if number == input
-          puts trope
-        end
-      end
+      puts @index.trope_list(@url)[input.to_i - 1].children
     elsif answer == "n"
       puts "Thank you for using the Trope Finder. Please have a great day."
     end

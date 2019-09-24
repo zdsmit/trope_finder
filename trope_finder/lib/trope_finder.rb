@@ -14,12 +14,12 @@ class TropeFinder
     answer = gets.strip
     answer = answer.to_s
     if answer == "y"
-      @index.trope_list(@url)
+      @index.trope_page(@url)
       puts "Enter a number to learn more about that trope."
-      input = STDIN.gets.strip
-      trope_info = @index.trope_list(@url)[input.to_i - 1].children.map {|info| info["href"]}
-      page_address = "tvtropes.org" + (trope_info[1].to_s)
-      @index.trope_page(page_address)
+    #  input = STDIN.gets.strip
+    #  trope_info = @index.trope_list(@url)[input.to_i - 1].children.map {|info| info["href"]}
+    #  page_address = "tvtropes.org" + (trope_info[1].to_s)
+    #  @index.trope_page(page_address)
     elsif answer == "n"
       puts "Thank you for using the Trope Finder. Please have a great day."
     end

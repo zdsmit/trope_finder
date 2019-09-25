@@ -23,7 +23,7 @@ class TropeFinder
       input = gets.strip.to_i
       trope = Trope.all[input - 1]
       @index.trope_page(trope)
-      puts "#{trope.name} \n \n #{trope.quote} \n \n #{trope.description}"
+      puts "#{trope.name} \n \n #{trope.quote} #{trope.description}"
     elsif answer == "n"
       puts "Thank you for using the Trope Finder. Please have a great day."
     end

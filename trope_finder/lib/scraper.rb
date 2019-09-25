@@ -22,7 +22,11 @@ class Scraper
   def trope_page(trope)
     trope_url = trope.url
     page_html = Nokogiri::HTML(open(trope_url))
-    trope.quote = page_html.css("div.indent")[0].text
+    if page_html.css("div.indent")[0] == nil
+      trope.quote = ""
+    else
+      trope.quote = page_html.css("div.indent")[0].text + "\n \n"
+    end
     trope.description = page_html.css("div.article-content.retro-folders p").text
   end
   

@@ -1,8 +1,11 @@
+#!/usr/bin/env ruby
 require 'trope_finder/version'
 require 'pry'
 require 'open-uri'
 require 'nokogiri'
 require_relative './trope.rb'
+require_relative './scraper.rb'
+require_relative './trope_finder.rb'
 
 module Mod
   class Error < StandardError; end

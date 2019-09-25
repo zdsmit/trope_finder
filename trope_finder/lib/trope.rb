@@ -1,8 +1,10 @@
 class Trope
-  attr_accessor :name, :description, :quote
+  attr_accessor :name, :description, :quote, :url
   @@all = []
   
-  def initialize
+  def initialize(name, url)
+    @name = name
+    @url = url
     @@all << self
   end
 

@@ -1,8 +1,3 @@
-require 'pry'
-require 'open-uri'
-require 'nokogiri'
-require_relative './trope.rb'
-
 class Scraper
   
   def trope_list(url)

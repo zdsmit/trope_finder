@@ -3,26 +3,28 @@ require 'open-uri'
 require 'nokogiri'
 require_relative './trope.rb'
 
-class Mod::Scraper
+class Scraper
   
   def trope_list(url)
     trope_html = Nokogiri::HTML(open(url))
     trope_index = trope_html.css("div.article-content.retro-folders ul")[1].children
     trope_index.each do |trope|
       url = trope.css('a')
-      trope_url = url.map {|element| element["href"]}.compact
+      trope_address = (url.map {|element| element["href"]}.compact)
+      trope_url = "https://tvtropes.org" + trope_address[0].to_s
       text = trope.text
       divide = text.split(":")
       trope_name = divide[0]
-      Mod::Trope.new(trope_name, trope_url)
+      Trope.new(trope_name, trope_url) unless trope_name == "Advertisement"
     end
   end
   
   def trope_page(trope)
-    trope.url = trope_url
+    trope_url = trope.url
     page_html = Nokogiri::HTML(open(trope_url))
     trope.quote = page_html.css("div.indent")[0].text
     trope.description = page_html.css("div.article-content.retro-folders p").text
+    binding.pry
   end
   
 end

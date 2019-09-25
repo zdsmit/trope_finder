@@ -16,12 +16,13 @@ class TropeFinder
     if answer == "y"
       @index.trope_list(@url)
       Trope.all.each_with_index do |trope, number|
-        puts "#{number}. #{trope_name}"
+        number += 1
+        puts "#{number}. #{trope.name}"
       end
       puts "Enter a number to learn more about that trope."
-      input = gets.strip
+      input = gets.strip.to_i
       trope = Trope.all[input - 1]
-      trope_page(trope)
+      @index.trope_page(trope)
       puts "#{trope.name} /n#{trope.quote} /n/n#{trope.description}"
     elsif answer == "n"
       puts "Thank you for using the Trope Finder. Please have a great day."

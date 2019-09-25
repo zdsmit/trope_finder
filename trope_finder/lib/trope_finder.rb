@@ -15,11 +15,14 @@ class TropeFinder
     answer = answer.to_s
     if answer == "y"
       @index.trope_list(@url)
+      Trope.all.each_with_index do |trope, number|
+        puts "#{number}. #{trope_name}"
+      end
       puts "Enter a number to learn more about that trope."
-      input = STDIN.gets.strip
-      trope_info = @index.trope_list(@url)[input.to_i - 1].children.map {|info| info["href"]}
-      page_address = "tvtropes.org" + (trope_info[1].to_s)
-      @index.trope_page(page_address)
+      input = gets.strip
+      trope = Trope.all[input - 1]
+      trope_page(trope)
+      puts "#{trope.name} /n#{trope.quote} /n/n#{trope.description}"
     elsif answer == "n"
       puts "Thank you for using the Trope Finder. Please have a great day."
     end

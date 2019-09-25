@@ -18,11 +18,9 @@ class Mod::Scraper
     end
   end
   
-  def trope_page(trope_url)
+  def trope_page(trope)
+    trope.url = trope_url
     page_html = Nokogiri::HTML(open(trope_url))
-    trope = Trope.all[input - 1]
-    trope_page(trope)
-    trope.name = page_html.css("h1.entry-title").text.gsub("/n", "")
     trope.quote = page_html.css("div.indent")[0].text
     trope.description = page_html.css("div.article-content.retro-folders p").text
   end

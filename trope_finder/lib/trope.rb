@@ -5,6 +5,8 @@ class Trope
   def initialize(name, url)
     @name = name
     @url = url
+    @description = description
+    @quote = quote
     @@all << self
   end
 

@@ -1,5 +1,3 @@
-require_relative './scraper.rb'
-
 class TropeFinder
   attr_accessor :index, :url
   
@@ -9,24 +7,29 @@ class TropeFinder
   end
   
   def user_interface
-    puts "Welcome to the trope index! Whether you're a big fan of TV, books, movies, or something else, you have definitely seen a great variety of tropes and cliches. This will allow you to have some fun exploring them!"
-    puts "You can get more information about your favorite tropes here. Would you like to see a list of tropes? [y/n]:"
-    answer = gets.strip
-    answer = answer.to_s
-    if answer == "y"
-      @index.trope_list(@url)
-      puts "Enter a number to learn more about that trope."
-      input = STDIN.gets.strip
-      trope_info = @index.trope_list(@url)[input.to_i - 1].children.map {|info| info["href"]}
-      page_address = "tvtropes.org" + (trope_info[1].to_s)
-      @index.trope_page(page_address)
-    elsif answer == "n"
-      puts "Thank you for using the Trope Finder. Please have a great day."
+    @index.trope_list(@url)
+    loop do
+      puts "Welcome to the trope index! Whether you're a big fan of TV, books, movies, or something else, you have definitely seen a great variety of tropes and cliches. This will allow you to have some fun exploring them!"
+      puts "You can get more information about your favorite tropes here. Would you like to see a list of tropes? [y/n]:"
+      answer = gets.strip
+      answer = answer.to_s
+      if answer == "y"
+        Trope.all.each_with_index do |trope, number|
+          number += 1
+          puts "#{number}. #{trope.name}"
+        end
+        puts "Enter a number to learn more about that trope."
+        input = gets.strip
+        trope = Trope.all[input.to_i - 1]
+        @index.trope_page(trope)
+        puts "#{trope.name} \n \n #{trope.quote} #{trope.description} \n \n"
+      elsif answer == "n"
+        puts "Thank you for using the Trope Finder. Please have a great day."
+        break
+      end
     end
   end
   
-  TropeFinder.new.user_interface
+end
   
   # note 9/23: almost working, but before it can complete its functionality it returns the error "No such file or directory @ rb_sysopen - tvtropes.org/pmwiki/pmwiki.php/Main/ZanySchemeChicken (Errno::ENOENT)"
-  
-end

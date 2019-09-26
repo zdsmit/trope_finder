@@ -1,2 +1,8 @@
 #!/usr/bin/env ruby
+require 'open-uri'
+require 'nokogiri'
+require_relative '../lib/trope.rb'
+require_relative '../lib/scraper.rb'
+require_relative '../lib/trope_finder.rb'
 
+TropeFinder.new.user_interface

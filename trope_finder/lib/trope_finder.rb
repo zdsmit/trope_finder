@@ -20,13 +20,20 @@ class TropeFinder
         end
         puts "Enter a number to learn more about that trope."
         input = gets.strip
-        trope = Trope.all[input.to_i - 1]
-        @index.trope_page(trope)
-        puts "#{trope.name} \n \n #{trope.quote} #{trope.description} \n \n"
+        if input.to_i > 1 && input.to_i < 750
+          trope = Trope.all[input.to_i - 1]
+          @index.trope_page(trope)
+          puts "#{trope.name} \n \n #{trope.quote} #{trope.description} \n \n"
+        else
+          puts "Sorry, I didn't understand that. Please enter a number between 1-750."
+        end
       elsif answer == "n"
         puts "Thank you for using the Trope Finder. Please have a great day."
         break
+      else
+        puts "Sorry, I didn't understand that. Please enter y or n \n"
       end
+      binding.pry
     end
   end
   
